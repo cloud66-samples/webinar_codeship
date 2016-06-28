@@ -19,6 +19,5 @@ function check_port() {
 }
 
 check_port "rabbitmq.cloud66.local" "5672"
-check_port "api.cloud66.local" "80"
 
-ruby worker.rb
+ruby main.rb

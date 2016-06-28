@@ -1,5 +1,21 @@
 version: '2'
 services:
+  test:
+    build: ./test
+    stdin_open: true
+    tty: true
+    volumes:
+      - ${PWD}/test:/home/app
+    environment:
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+    links:
+      - api
+      - api:api.cloud66.local
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+      - mysql
+      - mysql:mysql.cloud66.local
   api:
     build: .
     stdin_open: true
