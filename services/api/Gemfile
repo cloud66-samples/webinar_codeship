@@ -1,0 +1,12 @@
+source 'http://rubygems.org'
+
+gem 'rake'
+gem 'grape'
+gem 'activerecord', '~> 4.1.6', require: 'active_record'
+gem 'grape-activerecord'
+gem 'rack-cors'
+gem 'rack-contrib'
+gem 'mysql2', '~> 0.3.18'
+gem 'puma'
+gem 'bunny'
+

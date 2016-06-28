@@ -1,0 +1,17 @@
+version: '2'
+services:
+
+  worker:
+    build: .
+    stdin_open: true
+    tty: true
+    links:
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+    volumes:
+      - ${PWD}:/home/app
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "8080:15672"

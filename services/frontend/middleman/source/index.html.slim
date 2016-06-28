@@ -1,0 +1,55 @@
+.container ng-controller='orderController as controller'
+	
+	.row.order_form
+		.col-sm-4
+			h2 place order
+			form role="form"
+				.form-group
+					label for="kind" kind 
+					select.form-control name='kind' id="kind" ng-init="order.kind='bagel'" ng-model='order.kind'
+						option value="bagel" Bagel 
+						option value="spacecake" Spacecake 
+						option value="donut" Donut 
+						
+				.form-group
+					label flavour 
+					select.form-control name='flavour' ng-init="order.flavour='cola'" ng-model='order.flavour'
+						option value="cola" Cola
+						option value="stawberry" Stawberry
+						option value="glitter" Glitter
+						option value="rum" Rum
+						
+				.form-group
+					label amount
+					input.form-control type='text' ng-init='order.amount=1' ng-model='order.amount'
+			
+				button type="submit" ng-click="controller.orderstuff()" class="btn btn-default" Submit 	 
+	
+	.row.order_list
+		.col-md-12
+			h2 orders
+			table.table.table-striped
+				thead
+					tr
+						th id
+						th what?
+						th amount
+						th amount_ready
+						th status
+						th done
+				tbody
+					tr.order ng-repeat='order in orders'
+						th scope='row'
+							| {{order.id}}
+						td
+							| {{order.flavour}} {{order.kind}}
+						td 
+							| {{order.amount}}x
+						td 
+							| {{order.amount_ready}}x
+						td 
+							i.fa.fa-plus-square ng-if='order.status == 0'
+						td
+							i.fa.fa-check-square ng-if='order.done == true'
+							i.fa.fa-square-o ng-if='order.done != true'
+

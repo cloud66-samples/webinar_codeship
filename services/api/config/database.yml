@@ -1,0 +1,26 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: backery_dev
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] || 'mysql.cloud66.local'  %>
+  port: 3306
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: backery_test
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] || 'mysql.cloud66.local'  %>
+  port: 3306
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['MYSQL_DATABASE'] %>
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] || 'mysql.cloud66.local'  %>
+  port: 3306

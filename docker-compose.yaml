@@ -1,0 +1,50 @@
+version: '2'
+services:
+  frontend:
+    build: 
+      dockerfile: Dockerfile.development
+      context: ./services/frontend
+    stdin_open: true
+    tty: true
+    ports:
+      - "8002:80"  
+  api:
+    build: 
+      dockerfile: Dockerfile
+      context: ./services/api
+    stdin_open: true
+    tty: true
+    links:
+      - mysql
+      - mysql:mysql.cloud66.local
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+    environment:
+      - RACK_ENV=development
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - "8000:80"  
+  worker:
+    build: 
+      dockerfile: Dockerfile
+      context: ./services/worker
+    stdin_open: true
+    tty: true
+    links:
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+      - api
+      - api:api.cloud66.local
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "8080:15672"
+
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root

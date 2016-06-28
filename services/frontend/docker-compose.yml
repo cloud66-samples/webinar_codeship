@@ -1,0 +1,13 @@
+version: '2'
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: Dockerfile.development
+    stdin_open: true
+    tty: true
+    volumes:
+      - ${PWD}/middleman:/home/app
+    ports:
+      - "8002:80"
+ 

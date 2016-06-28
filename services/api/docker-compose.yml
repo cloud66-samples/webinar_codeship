@@ -1,0 +1,31 @@
+version: '2'
+services:
+  api:
+    build: .
+    stdin_open: true
+    tty: true
+    links:
+      - mysql
+      - mysql:mysql.cloud66.local
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+    volumes:
+      - ${PWD}:/home/app
+    environment:
+      - RACK_ENV=development
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - "8000:80"  
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "8080:15672"
+
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root

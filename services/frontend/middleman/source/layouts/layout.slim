@@ -1,0 +1,11 @@
+doctype 5
+html lang="nl"
+  head
+    = partial 'layouts/meta'
+    /![if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]
+    = stylesheet_link_tag "all"
+    = javascript_include_tag "vendor"
+  body ng-app='demo' ng-cloak=''
+    = partial 'partials/modules/header'
+    = yield
+    = javascript_include_tag "main"
