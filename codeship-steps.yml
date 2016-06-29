@@ -1,0 +1,4 @@
+- name: test_api
+  tag: master
+  service: api_test
+  command: /home/app/start_test.sh

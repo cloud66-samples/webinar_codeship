@@ -1,0 +1,40 @@
+api_test:
+  build: services/api/test
+  environment:
+    - MYSQL_USERNAME=root
+    - MYSQL_PASSWORD=root
+  links:
+    - api
+    - api:api.cloud66.local
+    - rabbitmq
+    - rabbitmq:rabbitmq.cloud66.local
+    - mysql
+    - mysql:mysql.cloud66.local
+
+api:
+  build: services/api
+  links:
+    - mysql
+    - mysql:mysql.cloud66.local
+    - rabbitmq
+    - rabbitmq:rabbitmq.cloud66.local
+  environment:
+    - RACK_ENV=development
+    - MYSQL_USERNAME=root
+    - MYSQL_PASSWORD=root
+
+worker:
+  build: services/worker
+  links:
+    - rabbitmq
+    - rabbitmq:rabbitmq.cloud66.local
+    - api
+    - api:api.cloud66.local
+
+rabbitmq:
+  image: rabbitmq:3-management
+
+mysql:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
