@@ -5,5 +5,5 @@
 - name: test_worker
   tag: master
   service: worker
-  cmmand: /home/app/start_test.sh
+  command: /home/app/start_test.sh
 
