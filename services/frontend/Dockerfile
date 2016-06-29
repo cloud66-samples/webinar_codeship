@@ -23,7 +23,7 @@ COPY middleman /home/app
 
 
 #api
-ENV COUNTER_ADDRESS api.microservice101.io
+ENV API_ADDRESS api.microservice101.io
 
 #start middleman as development server
 RUN bundle exec middleman build --verbose
