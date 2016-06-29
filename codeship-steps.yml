@@ -2,3 +2,8 @@
   tag: master
   service: api_test
   command: /home/app/start_test.sh
+- name: test_worker
+  tag: master
+  service: worker
+  cmmand: /home/app/start_test.sh
+
