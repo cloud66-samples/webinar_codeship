@@ -1,0 +1,28 @@
+---
+services:
+  frontend:
+    git_url: http://github.com/cloud66-samples/webinar_codeship.git
+    build_root: services/frontend
+    git_branch: master
+    ports:
+    - 80:80:443
+    traffic_matches:
+    - www.microservice101.io
+  api:
+    env_vars:
+      RACK_ENV: production
+    git_url: http://github.com/cloud66-samples/webinar_codeship.git
+    build_root: bakery/counter
+    git_branch: master
+    ports:
+    - 80:80:443
+    traffic_matches:
+    - api.microservice101.io
+  worker:
+    git_url: http://github.com/cloud66-samples/webinar_codeship.git
+    build_root: services/worker
+    git_branch: master
+
+databases:
+- mysql
+- rabbitmq
